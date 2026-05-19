@@ -1,328 +1,597 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Matt Station — Used MacBook & iPhone | Shenzhen</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
-* { margin:0; padding:0; box-sizing:border-box; }
-
-:root {
-  --bg: #0d0d0d;
-  --surface: #181818;
-  --card: #1a1a1a;
-  --card-hover: #202020;
-  --border: #2a2a2a;
-  --accent: #c8f542;
-  --accent-dark: #a8d030;
-  --text: #ffffff;
-  --text-dim: #888888;
-  --text-muted: #555555;
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#0e0b0b;
+  --surface:#161010;
+  --card:#1c1212;
+  --card2:#211515;
+  --border:#2e1a1a;
+  --border2:#3d2020;
+  --red:#e8302a;
+  --red2:#ff5046;
+  --red-dim:rgba(232,48,42,0.12);
+  --gold:#f0b429;
+  --text:#f5eded;
+  --muted:#7a6060;
+  --dim:#4a2f2f;
 }
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;min-height:100vh;overflow-x:hidden;}
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Inter', sans-serif;
-  min-height: 100vh;
+/* NAV */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(14,11,11,0.94);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  padding:0 28px;height:58px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
 }
-
-/* ── NOTICE BAR ── */
-.notice-bar {
-  background: rgba(200,245,66,0.07);
-  border-bottom: 1px solid rgba(200,245,66,0.12);
-  text-align: center;
-  padding: 0.5rem 1rem;
-  font-size: 0.75rem;
-  color: var(--accent);
-  font-weight: 500;
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
+.logo-badge{
+  width:34px;height:34px;border-radius:9px;
+  background:var(--red);
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;
+  box-shadow:0 0 18px rgba(232,48,42,0.45);
 }
+.logo-name{font-size:17px;font-weight:700;letter-spacing:-.02em;color:var(--text);}
+.logo-name span{color:var(--red2);}
+.logo-sub{font-size:10px;color:var(--muted);font-weight:400;margin-top:1px;letter-spacing:.05em;}
 
-/* ── TOP NAV ── */
-.topnav {
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
-  padding: 0 1.5rem;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+.nav-tabs{
+  display:flex;gap:3px;list-style:none;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;padding:4px;
 }
-
-.nav-left { display:flex; align-items:center; gap:2rem; }
-
-.logo {
-  display:flex; align-items:center; gap:0.5rem;
-  text-decoration:none;
+.nav-tabs a{
+  display:block;color:var(--muted);text-decoration:none;
+  font-size:13px;font-weight:500;
+  padding:5px 18px;border-radius:7px;transition:all .15s;white-space:nowrap;
 }
-.logo-icon {
-  width:32px; height:32px;
-  background: var(--accent);
-  border-radius:8px;
-  display:flex; align-items:center; justify-content:center;
-  font-size:1rem;
-}
-.logo-text { font-size:1.1rem; font-weight:700; color:var(--text); letter-spacing:-0.02em; }
+.nav-tabs a:hover{color:var(--text);}
+.nav-tabs a.active{background:var(--red);color:#fff;box-shadow:0 2px 10px rgba(232,48,42,.4);}
 
-.nav-links { display:flex; gap:0.25rem; list-style:none; }
-.nav-links a {
-  color:var(--text-dim); text-decoration:none;
-  font-size:0.82rem; font-weight:500;
-  padding:0.4rem 0.75rem; border-radius:6px;
-  transition:all 0.15s; cursor:pointer;
+.nav-right{display:flex;align-items:center;gap:10px;}
+.srch{position:relative;}
+.srch input{
+  background:var(--surface);border:1px solid var(--border2);
+  color:var(--text);font-family:'Outfit',sans-serif;font-size:13px;
+  padding:7px 14px 7px 34px;border-radius:9px;outline:none;
+  width:200px;transition:all .2s;
 }
-.nav-links a:hover, .nav-links a.active { color:var(--text); background:var(--surface); }
-
-.nav-center { flex:1; max-width:480px; margin:0 2rem; }
-.search-wrap { position:relative; }
-.search-wrap input {
-  width:100%;
-  background:var(--surface); border:1px solid var(--border);
-  border-radius:8px; padding:0.5rem 1rem 0.5rem 2.4rem;
-  color:var(--text); font-family:'Inter',sans-serif;
-  font-size:0.85rem; outline:none; transition:border-color 0.15s;
+.srch input:focus{border-color:var(--red);width:260px;box-shadow:0 0 0 3px rgba(232,48,42,.1);}
+.srch input::placeholder{color:var(--muted);}
+.srch-ico{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:13px;pointer-events:none;}
+.wa-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--red);color:#fff;
+  font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;
+  padding:7px 16px;border-radius:9px;border:none;cursor:pointer;
+  text-decoration:none;transition:all .15s;
+  box-shadow:0 2px 14px rgba(232,48,42,.35);
 }
-.search-wrap input:focus { border-color:#444; }
-.search-wrap input::placeholder { color:var(--text-muted); }
-.search-icon {
-  position:absolute; left:0.75rem; top:50%; transform:translateY(-50%);
-  color:var(--text-muted); font-size:0.85rem; pointer-events:none;
+.wa-btn:hover{background:var(--red2);}
+
+/* CAT STRIP */
+.cat-strip{
+  border-bottom:1px solid var(--border);
+  padding:0 28px;display:flex;gap:6px;align-items:center;
+  height:46px;overflow-x:auto;background:var(--bg);
 }
-
-.nav-right { display:flex; align-items:center; gap:0.75rem; }
-.nav-icon-btn {
-  width:36px; height:36px;
-  background:var(--surface); border:1px solid var(--border);
-  border-radius:8px; display:flex; align-items:center; justify-content:center;
-  cursor:pointer; font-size:1rem; transition:background 0.15s; text-decoration:none;
+.cat-strip::-webkit-scrollbar{display:none;}
+.cpill{
+  background:transparent;border:1px solid var(--border);color:var(--muted);
+  font-family:'Outfit',sans-serif;font-size:11px;font-weight:600;
+  padding:5px 14px;border-radius:7px;cursor:pointer;transition:all .15s;
+  white-space:nowrap;text-transform:uppercase;letter-spacing:.05em;
 }
-.nav-icon-btn:hover { background:var(--card-hover); }
+.cpill:hover{border-color:var(--dim);color:var(--text);}
+.cpill.active{background:var(--red);color:#fff;border-color:var(--red);box-shadow:0 2px 8px rgba(232,48,42,.35);}
 
-.nav-contact-btn {
-  background:var(--accent); color:#000;
-  font-size:0.8rem; font-weight:600;
-  padding:0.45rem 1rem; border-radius:8px;
-  border:none; cursor:pointer; text-decoration:none;
-  display:flex; align-items:center; gap:0.4rem;
-  transition:background 0.15s;
+/* PAGE */
+.page{max-width:1380px;margin:0 auto;padding:28px;}
+
+/* HERO */
+.hero{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:16px;padding:36px 40px;margin-bottom:28px;
+  display:flex;align-items:center;justify-content:space-between;gap:32px;
+  position:relative;overflow:hidden;
 }
-.nav-contact-btn:hover { background:var(--accent-dark); }
-
-/* ── CATEGORY PILLS ── */
-.cat-bar {
-  background:var(--bg); border-bottom:1px solid var(--border);
-  padding:0.75rem 1.5rem;
-  display:flex; align-items:center; gap:0.5rem;
-  overflow-x:auto; scrollbar-width:none;
-}
-.cat-bar::-webkit-scrollbar { display:none; }
-
-.cat-pill {
-  flex-shrink:0;
-  background:#1e1e1e; border:1px solid var(--border);
-  color:var(--text-dim); font-size:0.78rem; font-weight:500;
-  padding:0.35rem 1rem; border-radius:100px;
-  cursor:pointer; transition:all 0.15s; white-space:nowrap;
-}
-.cat-pill:hover { color:var(--text); border-color:#444; }
-.cat-pill.active { background:var(--accent); border-color:var(--accent); color:#000; font-weight:600; }
-
-/* ── MAIN ── */
-.main { max-width:1400px; margin:0 auto; padding:1.5rem; }
-
-/* ── SECTION HEADER ── */
-.section-header { margin-bottom:1.25rem; }
-.section-title { font-size:0.72rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-dim); margin-bottom:0.25rem; }
-.section-count { font-size:1.1rem; font-weight:700; color:var(--text); }
-
-/* ── HERO ── */
-.hero-banner {
-  background:var(--surface); border:1px solid var(--border);
-  border-radius:12px; padding:2.5rem; margin-bottom:2rem;
-  display:flex; align-items:center; justify-content:space-between;
-  gap:2rem; position:relative; overflow:hidden;
-}
-.hero-banner::before {
-  content:''; position:absolute; right:-60px; top:-60px;
-  width:300px; height:300px;
-  background:radial-gradient(circle, rgba(200,245,66,0.06) 0%, transparent 70%);
+.hero::before{
+  content:'';position:absolute;top:-80px;right:-80px;
+  width:420px;height:420px;border-radius:50%;
+  background:radial-gradient(circle,rgba(232,48,42,.09) 0%,transparent 65%);
   pointer-events:none;
 }
-.hero-eyebrow { font-size:0.72rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); margin-bottom:0.5rem; }
-.hero-h1 { font-size:2rem; font-weight:700; line-height:1.15; letter-spacing:-0.03em; margin-bottom:0.75rem; }
-.hero-sub { font-size:0.88rem; color:var(--text-dim); line-height:1.6; max-width:380px; margin-bottom:1.5rem; }
-.hero-actions { display:flex; gap:0.75rem; flex-wrap:wrap; }
+.hero h1{font-size:clamp(24px,3vw,36px);font-weight:800;line-height:1.1;letter-spacing:-.04em;margin-bottom:10px;}
+.hero h1 em{font-style:normal;color:var(--red2);}
+.hero p{font-size:14px;color:var(--muted);line-height:1.7;max-width:480px;margin-bottom:18px;}
+.htags{display:flex;gap:8px;flex-wrap:wrap;}
+.htag{background:var(--surface);border:1px solid var(--border2);color:var(--muted);font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px;letter-spacing:.03em;}
+.htag.r{background:rgba(232,48,42,.1);border-color:rgba(232,48,42,.3);color:var(--red2);}
+.htag.g{background:rgba(240,180,41,.08);border-color:rgba(240,180,41,.25);color:var(--gold);}
+.hero-stats{display:flex;gap:14px;flex-shrink:0;}
+.hstat{background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:18px 22px;text-align:center;min-width:88px;}
+.hstat-n{font-size:24px;font-weight:800;color:var(--red2);letter-spacing:-.02em;}
+.hstat-l{font-size:10px;color:var(--muted);margin-top:4px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;}
 
-.btn-primary {
-  background:var(--accent); color:#000;
-  font-size:0.82rem; font-weight:600;
-  padding:0.6rem 1.25rem; border-radius:8px;
-  border:none; cursor:pointer; text-decoration:none;
-  transition:background 0.15s; display:inline-block;
+/* SEC LABEL */
+.slabel{
+  font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:14px;
+  display:flex;align-items:center;gap:8px;
 }
-.btn-primary:hover { background:var(--accent-dark); }
+.slabel::before{content:'';display:block;width:3px;height:14px;border-radius:2px;background:var(--red);}
+.slabel span{color:var(--text);}
 
-.btn-outline {
-  background:transparent; color:var(--text-dim);
-  font-size:0.82rem; font-weight:500;
-  padding:0.6rem 1.25rem; border-radius:8px;
-  border:1px solid var(--border); cursor:pointer;
-  text-decoration:none; transition:all 0.15s; display:inline-block;
-}
-.btn-outline:hover { color:var(--text); border-color:#444; background:var(--surface); }
-
-.hero-stats { display:flex; gap:2.5rem; flex-shrink:0; }
-.hero-stat { text-align:center; }
-.hero-stat-num { font-size:1.6rem; font-weight:700; color:var(--accent); letter-spacing:-0.03em; }
-.hero-stat-label { font-size:0.7rem; color:var(--text-dim); margin-top:0.15rem; }
-
-/* ── CAT SHOWCASE ── */
-.cat-showcase {
-  display:grid; grid-template-columns:repeat(auto-fill, minmax(130px, 1fr));
-  gap:0.75rem; margin-bottom:2rem;
-}
-.cat-showcase-card {
-  background:var(--card); border:1px solid var(--border);
-  border-radius:10px; padding:1.1rem 0.75rem;
-  text-align:center; cursor:pointer; text-decoration:none;
-  transition:all 0.15s; display:block;
-}
-.cat-showcase-card:hover { background:var(--card-hover); border-color:#3a3a3a; }
-.cat-showcase-card.active-cat { border-color:var(--accent); background:rgba(200,245,66,0.05); }
-.cat-showcase-icon { font-size:1.8rem; margin-bottom:0.5rem; display:block; }
-.cat-showcase-name { font-size:0.78rem; font-weight:600; color:var(--text); display:block; }
-.cat-showcase-sub { font-size:0.65rem; color:var(--text-dim); margin-top:0.15rem; display:block; }
-
-/* ── PRODUCT GRID ── */
-.products-grid {
+/* GRID */
+.grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));
-  gap:1px; background:var(--border);
-  border:1px solid var(--border); border-radius:12px; overflow:hidden;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:10px;margin-bottom:40px;
+}
+.card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;cursor:pointer;
+  transition:all .2s;text-decoration:none;color:inherit;display:block;position:relative;
+}
+.card:hover{background:var(--card2);border-color:var(--border2);transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.5);}
+.cimg{
+  width:100%;aspect-ratio:4/3;
+  background:#130d0d;
+  display:flex;align-items:center;justify-content:center;
+  font-size:3.2rem;position:relative;overflow:hidden;
+  border-bottom:1px solid var(--border);
+}
+.cimg::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 90%,rgba(232,48,42,.06) 0%,transparent 60%);
+  pointer-events:none;
+}
+.cimg img{width:100%;height:100%;object-fit:cover;position:relative;z-index:1;}
+.ctag{
+  position:absolute;top:8px;left:8px;z-index:2;
+  background:rgba(0,0,0,.68);backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.07);
+  color:var(--muted);font-size:9px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 8px;border-radius:5px;
+}
+.fav{
+  position:absolute;top:8px;right:8px;z-index:2;
+  width:28px;height:28px;border-radius:6px;
+  background:rgba(0,0,0,.6);backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.06);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;cursor:pointer;transition:all .15s;
+}
+.fav:hover{background:rgba(232,48,42,.3);border-color:rgba(232,48,42,.5);}
+.cbody{padding:12px;}
+.cname{font-size:13px;font-weight:500;line-height:1.4;color:var(--text);margin-bottom:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.cfoot{display:flex;align-items:flex-end;justify-content:space-between;}
+.pusd{font-size:15px;font-weight:700;color:var(--red2);letter-spacing:-.01em;}
+.pcny{font-size:11px;color:var(--muted);margin-top:2px;}
+.gbadge{font-size:10px;font-weight:700;letter-spacing:.04em;padding:3px 8px;border-radius:5px;}
+.ga{background:rgba(200,245,66,.1);color:#c8f542;}
+.gb{background:rgba(240,180,41,.1);color:var(--gold);}
+.gc{background:rgba(232,48,42,.1);color:var(--red2);}
+
+.no-res{display:none;text-align:center;padding:60px 20px;color:var(--muted);grid-column:1/-1;}
+.no-res a{color:var(--red2);text-decoration:none;}
+
+/* CONTACT */
+.cview{display:none;}
+.cview.show{display:block;}
+.mview{display:block;}
+.mview.hide{display:none;}
+
+.cwrap{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:960px;}
+.cc{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;}
+.cc-title{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;display:flex;align-items:center;gap:8px;}
+.cc-title::before{content:'';width:3px;height:12px;border-radius:2px;background:var(--red);display:block;}
+.crow{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);}
+.crow:last-child{border-bottom:none;}
+.cico{width:38px;height:38px;border-radius:9px;background:rgba(232,48,42,.1);border:1px solid rgba(232,48,42,.2);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+.clbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;}
+.cval{font-size:14px;font-weight:600;color:var(--text);margin-top:2px;}
+.qgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.qitem{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center;transition:border-color .15s;cursor:pointer;}
+.qitem:hover{border-color:var(--red);}
+.qbox{width:64px;height:64px;border-radius:8px;background:var(--card);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:26px;border:1px solid var(--border);}
+.qname{font-size:13px;font-weight:600;color:var(--text);}
+.qhandle{font-size:10px;color:var(--muted);margin-top:2px;}
+.alert{background:rgba(232,48,42,.06);border:1px solid rgba(232,48,42,.2);border-radius:10px;padding:14px 16px;display:flex;gap:10px;margin-top:16px;}
+.alert-t{font-size:12px;color:var(--muted);line-height:1.6;}
+.alert-t strong{color:var(--red2);}
+
+.gtable{margin-top:20px;}
+.grow{display:grid;grid-template-columns:48px 1fr;gap:14px;align-items:center;padding:14px 18px;background:var(--card);border:1px solid var(--border);border-bottom:none;}
+.grow:first-child{border-radius:12px 12px 0 0;}
+.grow:last-child{border-bottom:1px solid var(--border);border-radius:0 0 12px 12px;}
+.gl{font-size:22px;font-weight:800;}
+.gd{font-size:12px;color:var(--muted);line-height:1.5;}
+
+@media(max-width:860px){
+  .hero{flex-direction:column;gap:20px;}
+  .cwrap{grid-template-columns:1fr;}
+  .nav-tabs{display:none;}
+}
+@media(max-width:600px){
+  nav{padding:0 14px;}
+  .page{padding:16px;}
+  .hero{padding:22px 18px;}
+  .cat-strip{padding:0 14px;}
 }
 
-.product-card {
-  background:var(--card); cursor:pointer;
-  transition:background 0.15s; display:flex; flex-direction:column;
-  position:relative;
-}
-.product-card:hover { background:var(--card-hover); }
-
-.product-img-wrap {
-  position:relative; width:100%; padding-top:80%;
-  background:var(--surface); overflow:hidden;
-}
-.product-img-inner {
-  position:absolute; inset:0;
-  display:flex; align-items:center; justify-content:center;
-  font-size:3.5rem;
-}
-.product-cat-tag {
-  position:absolute; top:0.6rem; left:0.6rem;
-  background:rgba(0,0,0,0.7); backdrop-filter:blur(4px);
-  border:1px solid var(--border); color:var(--text-dim);
-  font-size:0.6rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;
-  padding:0.2rem 0.5rem; border-radius:4px;
-}
-.product-heart {
-  position:absolute; top:0.6rem; right:0.6rem;
-  width:28px; height:28px;
-  background:rgba(0,0,0,0.6); border:1px solid var(--border);
-  border-radius:50%; display:flex; align-items:center; justify-content:center;
-  font-size:0.75rem; cursor:pointer; transition:all 0.15s;
-}
-.product-heart:hover { background:rgba(200,245,66,0.15); border-color:var(--accent); }
-.product-grade-badge {
-  position:absolute; bottom:0.6rem; right:0.6rem;
-  font-size:0.6rem; font-weight:700; letter-spacing:0.05em;
-  padding:0.2rem 0.5rem; border-radius:4px;
-}
-.grade-a { background:rgba(200,245,66,0.15); color:var(--accent); border:1px solid rgba(200,245,66,0.3); }
-.grade-b { background:rgba(255,170,50,0.12); color:#ffaa32; border:1px solid rgba(255,170,50,0.25); }
-.grade-c { background:rgba(255,80,80,0.12); color:#ff5050; border:1px solid rgba(255,80,80,0.25); }
-
-.product-body { padding:0.85rem; flex:1; display:flex; flex-direction:column; gap:0.4rem; }
-.product-name { font-size:0.82rem; font-weight:500; color:var(--text); line-height:1.4; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-.product-rating { display:flex; align-items:center; gap:0.3rem; }
-.stars { color:var(--accent); font-size:0.7rem; letter-spacing:0.05em; }
-.rating-num { font-size:0.7rem; color:var(--text-dim); }
-.product-price { font-size:1rem; font-weight:700; color:var(--accent); margin-top:auto; }
-.product-price-sub { font-size:0.72rem; color:var(--text-muted); font-weight:400; }
-
-/* ── NO RESULTS ── */
-#no-results {
-  display:none; text-align:center; padding:4rem 2rem;
-  color:var(--text-dim); font-size:0.88rem;
-  grid-column:1 / -1; background:var(--card);
-}
-
-/* ── PAGE VIEWS ── */
-.page-view { display:none; }
-.page-view.active { display:block; }
-
-/* ── CONTACT ── */
-.contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
-.contact-card { background:var(--card); border:1px solid var(--border); border-radius:12px; overflow:hidden; }
-.contact-card-header { padding:1rem 1.25rem; border-bottom:1px solid var(--border); font-size:0.78rem; font-weight:600; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.06em; }
-.contact-item { display:flex; align-items:center; gap:1rem; padding:1rem 1.25rem; border-bottom:1px solid var(--border); transition:background 0.15s; cursor:pointer; text-decoration:none; color:inherit; }
-.contact-item:last-child { border-bottom:none; }
-.contact-item:hover { background:var(--card-hover); }
-.contact-item-icon { width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; flex-shrink:0; }
-.icon-wa { background:rgba(37,211,102,0.12); }
-.icon-wc { background:rgba(9,196,85,0.12); }
-.icon-yt { background:rgba(255,0,0,0.1); }
-.icon-tt { background:rgba(255,255,255,0.06); }
-.icon-ig { background:rgba(200,100,200,0.12); }
-.icon-loc { background:rgba(200,245,66,0.1); }
-.contact-item-label { font-size:0.68rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:0.15rem; }
-.contact-item-value { font-size:0.88rem; font-weight:600; color:var(--text); }
-
-.qr-grid { display:grid; grid-template-columns:repeat(4,1fr); }
-.qr-item { padding:1.25rem 0.75rem; border-right:1px solid var(--border); text-align:center; }
-.qr-item:last-child { border-right:none; }
-.qr-box { width:64px; height:64px; background:var(--surface); border:1px solid var(--border); border-radius:8px; margin:0 auto 0.6rem; display:flex; align-items:center; justify-content:center; font-size:1.6rem; }
-.qr-name { font-size:0.72rem; font-weight:600; color:var(--text); }
-.qr-handle { font-size:0.65rem; color:var(--text-dim); margin-top:0.1rem; }
-
-.safety-banner { background:rgba(200,245,66,0.05); border:1px solid rgba(200,245,66,0.15); border-radius:10px; padding:1rem 1.25rem; display:flex; align-items:flex-start; gap:0.75rem; margin-top:1rem; }
-.safety-icon { font-size:1.2rem; flex-shrink:0; }
-.safety-text { font-size:0.82rem; color:var(--text-dim); line-height:1.5; }
-.safety-text strong { color:var(--accent); }
-
-/* ── GRADE GUIDE ── */
-.grade-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
-.grade-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.5rem; }
-.grade-letter-big { font-size:2.5rem; font-weight:700; letter-spacing:-0.04em; margin-bottom:0.5rem; }
-.grade-card-title { font-size:0.85rem; font-weight:600; color:var(--text); margin-bottom:0.5rem; }
-.grade-card-desc { font-size:0.8rem; color:var(--text-dim); line-height:1.6; }
-
-/* ── RESPONSIVE ── */
-@media (max-width:768px) {
-  .hero-stats { display:none; }
-  .hero-h1 { font-size:1.4rem; }
-  .contact-grid { grid-template-columns:1fr; }
-  .grade-cards { grid-template-columns:1fr; }
-  .qr-grid { grid-template-columns:1fr 1fr; }
-  .nav-center { display:none; }
-  .nav-links { display:none; }
-}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.f1{animation:fadeUp .35s ease both;}
+.f2{animation:fadeUp .35s .07s ease both;}
+.f3{animation:fadeUp .35s .14s ease both;}
 </style>
 </head>
 <body>
 
-<div class="notice-bar">
-  ✔ Always verified via video call before payment &nbsp;·&nbsp; WA: +86 17724713570 &nbsp;·&nbsp; WeChat: mattstation
+<nav>
+  <a href="#" class="logo" onclick="goMain();return false;">
+    <div class="logo-badge">🏪</div>
+    <div>
+      <div class="logo-name">Matt<span>Station</span></div>
+      <div class="logo-sub">Shenzhen · China</div>
+    </div>
+  </a>
+
+  <ul class="nav-tabs">
+    <li><a href="#" class="active" id="tab-all" onclick="goMain();setCat('all',null);return false;">All</a></li>
+    <li><a href="#" id="tab-mac" onclick="goMain();setCat('macbook',null);return false;">MacBook</a></li>
+    <li><a href="#" id="tab-iph" onclick="goMain();setCat('iphone',null);return false;">iPhone</a></li>
+    <li><a href="#" id="tab-con" onclick="goContact();return false;">Contact</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <div class="srch">
+      <span class="srch-ico">🔍</span>
+      <input type="text" placeholder="Search model, chip, RAM…" oninput="doSearch(this.value)"/>
+    </div>
+    <a href="#" class="wa-btn" onclick="goContact();return false;">📱 WhatsApp</a>
+  </div>
+</nav>
+
+<div class="cat-strip">
+  <button class="cpill active" data-cat="all" onclick="setCat('all',this)">All Devices</button>
+  <button class="cpill" data-cat="neo13" onclick="setCat('neo13',this)">Neo 13"</button>
+  <button class="cpill" data-cat="air13" onclick="setCat('air13',this)">Air 13"</button>
+  <button class="cpill" data-cat="air15" onclick="setCat('air15',this)">Air 15"</button>
+  <button class="cpill" data-cat="pro13" onclick="setCat('pro13',this)">Pro 13"</button>
+  <button class="cpill" data-cat="pro14" onclick="setCat('pro14',this)">Pro 14"</button>
+  <button class="cpill" data-cat="pro16" onclick="setCat('pro16',this)">Pro 16"</button>
+  <button class="cpill" data-cat="iphone" onclick="setCat('iphone',this)">iPhone</button>
 </div>
 
-<nav class="topnav">
-  <div class="nav-left">
-    <a href="#" class="logo" onclick="showPage('shop');return false;">
-      <div class="logo-icon">💻</div>
-      <span class="logo-text">MattStation</span>
-    </a>
-    <ul class="nav-links">
-      <li><a class="active" onclick="showPage('shop');setActive(
+<!-- MAIN -->
+<div class="page mview f1" id="mview">
+  <div class="hero f1">
+    <div>
+      <h1>Quality Used <em>MacBooks</em><br/>& iPhones Direct</h1>
+      <p>Pre-owned Apple devices graded A/B/C, verified via video call before payment. Competitive USD & CNY pricing straight from Shenzhen, China.</p>
+      <div class="htags">
+        <span class="htag r">🇨🇳 Shenzhen Direct</span>
+        <span class="htag g">🎥 Video Verified</span>
+        <span class="htag">Grade A / B / C</span>
+        <span class="htag">WA +86 17724713570</span>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-n">A·B·C</div><div class="hstat-l">Grades</div></div>
+      <div class="hstat"><div class="hstat-n">100%</div><div class="hstat-l">Video Check</div></div>
+      <div class="hstat"><div class="hstat-n">SZ</div><div class="hstat-l">China Direct</div></div>
+    </div>
+  </div>
+
+  <div class="slabel f2"><span>Listings</span></div>
+
+  <div class="grid f3" id="pgrid">
+
+    <!-- PRO 16 -->
+    <div class="card" data-cat="pro16" data-q="macbook pro 16 m4 pro 48gb 512gb">
+      <div class="cimg">💻<div class="ctag">PRO 16"</div><div class="fav">🤍</div></div>
+      <div class="cbody">
+        <div class="cname">MacBook Pro 16" M4 Pro 48GB 512GB</div>
+        <div class="cfoot">
+          <div><div class="pusd">$2,355</div><div class="pcny">¥16,000 CNY</div></div>
+          <span class="gbadge ga">Grade A</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="pro16" data-q="macbook pro 16 m1 max 64gb 4tb">
+      <div class="cimg">💻<div class="ctag">PRO 16"</div><div class="fav">🤍</div></div>
+      <div class="cbody">
+        <div class="cname">MacBook Pro 16" M1 Max 64GB 4TB</div>
+        <div class="cfoot">
+          <div><div class="pusd">$2,070</div><div class="pcny">¥14,100 CNY</div></div>
+          <span class="gbadge ga">Grade A</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="pro16" data-q="macbook pro 16 m3 pro 18gb 512gb">
+      <div class="cimg">💻<div class="ctag">PRO 16"</div><div class="fav">🤍</div></div>
+      <div class="cbody">
+        <div class="cname">MacBook Pro 16" M3 Pro 18GB 512GB</div>
+        <div class="cfoot">
+          <div><div class="pusd">$1,350</div><div class="pcny">¥9,200 CNY</div></div>
+          <span class="gbadge gb">Grade B</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRO 14 -->
+    <div class="card" data-cat="pro14" data-q="macbook pro 14 m4 max 36gb 1tb">
+      <div class="cimg">💻<div class="ctag">PRO 14"</div><div class="fav">🤍</div></div>
+      <div class="cbody">
+        <div class="cname">MacBook Pro 14" M4 Max 36GB 1TB</div>
+        <div class="cfoot">
+          <div><div class="pusd">$2,215</div><div class="pcny">¥15,100 CNY</div></div>
+          <span class="gbadge ga">Grade A</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="pro14" data-q="macbook pro 14 m5 16gb 512gb">
+      <div class="cimg">💻<div class="ctag">PRO 14"</div><div class="fav">🤍</div></div>
+      <div class="cbody">
+        <div class="cname">MacBook Pro 14" M5 16GB 512GB</div>
+        <div class="cfoot">
+          <div><div class="pusd">$1,400</div><div class="pcny">¥9,500 CNY</div></div>
+          <span class="gbadge ga">Grade A</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- AIR 15 -->
+    <div class="card" data-cat="air15" data-q="macbook air 15 m5 16gb 1tb">
+      <div class="cimg">💨<div class="ctag">AIR 15"</div><div class="fav">🤍</div></div>
+      <div class="cbody">
+        <div class="cname">MacBook Air 15" M5 16GB 1TB</div>
+        <div class="cfoot">
+          <div><div class="pusd">$1,365</div><div class="pcny">CNY on request</div></div>
+          <span class="gbadge ga">Grade A</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="air15" data-q="macbook air 15 m2 16gb 1tb">
+      <div class="cimg">💨<div class="ctag">AIR 15"</div><div class="fav">🤍</div></div>
+      <div class="cbody">
+        <div class="cname">MacBook Air 15" M2 16GB 1TB</div>
+        <div class="cfoot">
+          <div><div class="pusd">$895</div><div class="pcny">CNY on request</div></div>
+          <span class="gbadge gb">Grade B</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="air15" data-q="macbook air 15 m2 16gb 512gb">
+      <div class="cimg">💨<div class="ctag">AIR 15"</div><div class="fav">🤍</div></div>
+      <div class="cbody">
+        <div class="cname">MacBook Air 15" M2 16GB 512GB</div>
+        <div class="cfoot">
+          <div><div class="pusd">$795</div><div class="pcny">CNY on request</div></div>
+          <span class="gbadge gb">Grade B</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- AIR 13 -->
+    <div class="card" data-cat="air13" data-q="macbook air 13 m5 16gb 512gb">
+      <div class="cimg">💨<div class="ctag">AIR 13"</div><div class="fav">🤍</div></div>
+      <div class="cbody">
+        <div class="cname">MacBook Air 13" M5 16GB 512GB</div>
+        <div class="cfoot">
+          <div><div class="pusd">$1,015</div><div class="pcny">¥6,900 CNY</div></div>
+          <span class="gbadge ga">Grade A</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEO 13 -->
+    <div class="card" data-cat="neo13" data-q="macbook neo 13 a18 pro 8gb 512gb">
+      <div class="cimg">💻<div class="ctag">NEO 13"</div><div class="fav">🤍</div></div>
+      <div class="cbody">
+        <div class="cname">MacBook Neo 13" A18 Pro 8GB 512GB</div>
+        <div class="cfoot">
+          <div><div class="pusd">$615</div><div class="pcny">¥4,200 CNY</div></div>
+          <span class="gbadge ga">Grade A</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="neo13" data-q="macbook neo 13 a18 pro 8gb 256gb">
+      <div class="cimg">💻<div class="ctag">NEO 13"</div><div class="fav">🤍</div></div>
+      <div class="cbody">
+        <div class="cname">MacBook Neo 13" A18 Pro 8GB 256GB</div>
+        <div class="cfoot">
+          <div><div class="pusd">$545</div><div class="pcny">¥3,700 CNY</div></div>
+          <span class="gbadge ga">Grade A</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRO 13 -->
+    <div class="card" data-cat="pro13" data-q="macbook pro 13 m1 8gb 256gb">
+      <div class="cimg">💻<div class="ctag">PRO 13"</div><div class="fav">🤍</div></div>
+      <div class="cbody">
+        <div class="cname">MacBook Pro 13" M1 8GB 256GB</div>
+        <div class="cfoot">
+          <div><div class="pusd">$485</div><div class="pcny">CNY on request</div></div>
+          <span class="gbadge gb">Grade B</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- iPHONE -->
+    <div class="card" data-cat="iphone" data-q="iphone 16 pro max ch dual sim">
+      <div class="cimg">📱<div class="ctag">iPHONE</div><div class="fav">🤍</div></div>
+      <div class="cbody">
+        <div class="cname">iPhone 16 Pro Max — CH Dual SIM</div>
+        <div class="cfoot">
+          <div><div class="pusd">Contact</div><div class="pcny">Price on request</div></div>
+          <span class="gbadge ga">Grade A</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="iphone" data-q="iphone 16 pro ch dual sim">
+      <div class="cimg">📱<div class="ctag">iPHONE</div><div class="fav">🤍</div></div>
+      <div class="cbody">
+        <div class="cname">iPhone 16 Pro — CH Dual SIM</div>
+        <div class="cfoot">
+          <div><div class="pusd">Contact</div><div class="pcny">Price on request</div></div>
+          <span class="gbadge ga">Grade A</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="iphone" data-q="iphone 15 pro max ch">
+      <div class="cimg">📱<div class="ctag">iPHONE</div><div class="fav">🤍</div></div>
+      <div class="cbody">
+        <div class="cname">iPhone 15 Pro Max — CH Dual SIM</div>
+        <div class="cfoot">
+          <div><div class="pusd">Contact</div><div class="pcny">Price on request</div></div>
+          <span class="gbadge gb">Grade B</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="iphone" data-q="iphone 12 pro 256 ch">
+      <div class="cimg">📱<div class="ctag">iPHONE</div><div class="fav">🤍</div></div>
+      <div class="cbody">
+        <div class="cname">iPhone 12 Pro 256GB — CH Version</div>
+        <div class="cfoot">
+          <div><div class="pusd">Contact</div><div class="pcny">Price on request</div></div>
+          <span class="gbadge gb">Grade B</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="iphone" data-q="iphone 11 promax ch">
+      <div class="cimg">📱<div class="ctag">iPHONE</div><div class="fav">🤍</div></div>
+      <div class="cbody">
+        <div class="cname">iPhone 11 Pro Max — CH Dual SIM</div>
+        <div class="cfoot">
+          <div><div class="pusd">Contact</div><div class="pcny">Price on request</div></div>
+          <span class="gbadge gb">Grade B</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="no-res" id="no-res">
+      No listings found. <a href="#" onclick="goContact();return false;">Contact Matt</a> for custom requests.
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="page cview" id="cview">
+  <div class="slabel f1"><span>Contact Matt</span></div>
+  <div class="cwrap f2">
+    <div>
+      <div class="cc">
+        <div class="cc-title">Get in Touch</div>
+        <div class="crow"><div class="cico">📱</div><div><div class="clbl">WhatsApp</div><div class="cval">+86 17724713570</div></div></div>
+        <div class="crow"><div class="cico">💬</div><div><div class="clbl">WeChat ID</div><div class="cval">mattstation</div></div></div>
+        <div class="crow"><div class="cico">📍</div><div><div class="clbl">Location</div><div class="cval">Shenzhen, China</div></div></div>
+        <div class="crow"><div class="cico">🎥</div><div><div class="clbl">YouTube & TikTok</div><div class="cval">@mattstation</div></div></div>
+        <div class="crow"><div class="cico">📸</div><div><div class="clbl">Instagram</div><div class="cval">@mattstationm</div></div></div>
+        <div class="alert"><div style="font-size:16px;flex-shrink:0">⚠️</div><div class="alert-t">Always confirm via <strong>video call</strong> before any payment. Matt will show the device live first.</div></div>
+      </div>
+
+      <div class="slabel" style="margin-top:20px;"><span>Device Grade Guide</span></div>
+      <div class="gtable">
+        <div class="grow"><div class="gl" style="color:#c8f542;">A</div><div class="gd">Excellent condition. Possible very minor scratches. Fully functional.</div></div>
+        <div class="grow"><div class="gl" style="color:var(--gold);">B</div><div class="gd">Clearly visible scratches. No serious impacts. Screen fully intact.</div></div>
+        <div class="grow"><div class="gl" style="color:var(--red2);">C</div><div class="gd">Severe external damage. Screen intact. Significant price discount.</div></div>
+      </div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-title">Scan to Connect</div>
+      <div class="qgrid">
+        <div class="qitem"><div class="qbox">📱</div><div class="qname">WhatsApp</div><div class="qhandle">+86 17724713570</div></div>
+        <div class="qitem"><div class="qbox">💬</div><div class="qname">WeChat</div><div class="qhandle">mattstation</div></div>
+        <div class="qitem"><div class="qbox">🎥</div><div class="qname">TikTok</div><div class="qhandle">@mattstation</div></div>
+        <div class="qitem"><div class="qbox">📸</div><div class="qname">Instagram</div><div class="qhandle">@mattstationm</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+let cat = 'all', q = '';
+
+function setCat(c, btn) {
+  cat = c;
+  document.querySelectorAll('.cpill').forEach(p => p.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  else {
+    document.querySelectorAll('.cpill').forEach(p => {
+      if (p.dataset.cat === c) p.classList.add('active');
+    });
+  }
+  // sync nav tabs
+  ['tab-all','tab-mac','tab-iph'].forEach(id => document.getElementById(id).classList.remove('active'));
+  if (c === 'all') document.getElementById('tab-all').classList.add('active');
+  else if (c === 'iphone') document.getElementById('tab-iph').classList.add('active');
+  else document.getElementById('tab-mac').classList.add('active');
+  render();
+}
+
+function doSearch(v) { q = v.toLowerCase(); render(); }
+
+function render() {
+  const cards = document.querySelectorAll('#pgrid .card');
+  let n = 0;
+  cards.forEach(c => {
+    // macbook = everything except iphone
+    const catOk = cat === 'all'
+      || (cat === 'macbook' && c.dataset.cat !== 'iphone')
+      || c.dataset.cat === cat;
+    const qOk = !q || (c.dataset.q || '').includes(q);
+    c.style.display = catOk && qOk ? 'block' : 'none';
+    if (catOk && qOk) n++;
+  });
+  document.getElementById('no-res').style.display = n === 0 ? 'block' : 'none';
+}
+
+function goMain() {
+  document.getElementById('mview').classList.remove('hide');
+  document.getElementById('cview').classList.remove('show');
+  ['tab-all','tab-mac','tab-iph'].forEach(id => document.getElementById(id).classList.remove('active'));
+  document.getElementById('tab-all').classList.add('active');
+  setCat('all', document.querySelector('.cpill[data-cat="all"]'));
+}
+
+function goContact() {
+  document.getElementById('mview').classList.add('hide');
+  document.getElementById('cview').classList.add('show');
+  ['tab-all','tab-mac','tab-iph','tab-con'].forEach(id => document.getElementById(id) && document.getElementById(id).classList.remove('active'));
+  document.getElementById('tab-con').classList.add('active');
+}
+
+document.querySelectorAll('.fav').forEach(f => {
+  f.addEventListener('click', e => {
+    e.preventDefault(); e.stopPropagation();
+    f.textContent = f.textContent === '🤍' ? '❤️' : '🤍';
+  });
+});
+</script>
+</body>
+</html>
